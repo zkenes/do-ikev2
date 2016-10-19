@@ -1,0 +1,11 @@
+# this config file is for installer.71m.us
+
+name: ikev1
+image: ubuntu-14-04-x64
+min_size: 512mb
+config:
+  packages:
+    - git
+    - ansible
+  runcmd:
+    - mkdir -p /opt/ikev1 && cd /opt/ikev1 && git clone https://github.com/zkenes/vpn-deploy-playbook.git && cd vpn-deploy-playbook && cp group_vars/ipsec.yml.example group_vars/ipsec.yml && ansible-playbook ipsec.yml -i ansible_hosts.local --skip-tags=common,nginx
